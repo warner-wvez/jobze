@@ -1,0 +1,42 @@
+/* Shine keyframe for ShineBorder (ported from dillionverma/shine-border).
+   Kept local so the component does not depend on extra Tailwind animate config. */
+@keyframes jz-shine {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+.jz-shine-border__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--sb-radius);
+  padding: var(--sb-width);
+  pointer-events: none;
+  will-change: background-position;
+  background-image: radial-gradient(
+    transparent,
+    transparent,
+    var(--sb-color),
+    transparent,
+    transparent
+  );
+  background-size: 300% 300%;
+  /* mask so the gradient only paints the border ring, not the fill */
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .jz-shine-border__layer {
+    animation: jz-shine var(--sb-duration) infinite linear;
+  }
+}

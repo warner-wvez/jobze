@@ -1,0 +1,173 @@
+/* ============================================================================
+   SELF-DRAWING "J" LOGO TRACE
+   Ported VERBATIM from jobze-lite-v2.html (lines 113-142, 425-431). The path
+   stroke-dasharray / stroke-dashoffset keyframes and IDs are unchanged. Only
+   the wrapping container class names are namespaced (jz-hero-logo) so the trace
+   can mount anywhere without colliding.
+
+   Trace plays once, one short pulse, then fades out. Text enters as fade begins.
+   ========================================================================== */
+
+/* GLOW LOGO above hero — shrunk to ~40% of the original so it reads as a small
+   mark sitting above the headline, not a centerpiece. (was min(46vmin, 380px)) */
+.jz-hero-logo {
+  width: min(40vmin, 320px);
+  flex-shrink: 0;
+  z-index: 0;
+  pointer-events: none;
+  transform-origin: center;
+  transform: none;
+}
+.jz-hero-logo svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.jz-hero-logo path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 17;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.jz-hero-logo circle {
+  fill: #fff;
+}
+
+/* Glow: trace → one pulse → fade out */
+#hl-group {
+  animation:
+    hlGlowTrace var(--hl-trace-duration) ease-in-out 1 forwards,
+    hlPulse 0.8s ease-in-out 1 forwards,
+    hlFadeOut 0.5s ease-in-out 1 forwards;
+  animation-delay:
+    0s,
+    var(--hl-trace-duration),
+    calc(var(--hl-trace-duration) + 0.8s);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+#hl-main {
+  stroke-dasharray: 2007.1;
+  animation: hlMainDraw var(--hl-trace-duration) ease-in-out 1 forwards;
+}
+#hl-a1 {
+  stroke-dasharray: 191.7;
+  animation: hlA1Draw var(--hl-trace-duration) ease-in-out 1 forwards;
+}
+#hl-a2 {
+  stroke-dasharray: 144.1;
+  animation: hlA2Draw var(--hl-trace-duration) ease-in-out 1 forwards;
+}
+#hl-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hlDotDraw var(--hl-trace-duration) ease-in-out 1 forwards;
+}
+
+/* Draw keyframes — remapped from the original 0–52% window (before erase) */
+@keyframes hlMainDraw {
+  0% {
+    stroke-dashoffset: 2007.1;
+  }
+  64% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes hlA1Draw {
+  0%,
+  64% {
+    stroke-dashoffset: 191.7;
+  }
+  77% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes hlA2Draw {
+  0%,
+  67% {
+    stroke-dashoffset: 144.1;
+  }
+  81% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes hlDotDraw {
+  0%,
+  77% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  89% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Dim hold during draw — no glow build-up; hlPulse is the only post-draw glow */
+@keyframes hlGlowTrace {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+    opacity: 0.6;
+  }
+}
+
+/* One short breath after trace (only visible glow post-draw) */
+@keyframes hlPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.45))
+      drop-shadow(0 0 14px rgba(255, 255, 255, 0.2));
+    opacity: 0.6;
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.75))
+      drop-shadow(0 0 28px rgba(255, 255, 255, 0.35));
+    opacity: 0.88;
+  }
+}
+
+@keyframes hlFadeOut {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #hl-main,
+  #hl-a1,
+  #hl-a2,
+  #hl-group,
+  #hl-dot {
+    animation: none;
+  }
+  #hl-main,
+  #hl-a1,
+  #hl-a2 {
+    stroke-dashoffset: 0;
+  }
+  #hl-dot {
+    transform: scale(1);
+    opacity: 1;
+  }
+  #hl-group {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,102 @@
+/* ============================================================================
+   JOBZE DESIGN TOKENS
+   The single source of truth for the system. tailwind.config.js maps these
+   into utilities; raw CSS reads them directly. Change a value here once and it
+   propagates everywhere.
+   ========================================================================== */
+:root {
+  /* ---- COLOR ---- */
+  --jz-bg: #08080a;
+  --jz-surface: #101014; /* one step above bg for cards/panels */
+  --jz-fg: #f4f4f5;
+  --jz-fg-dim: #a1a1aa;
+  --jz-muted: #71717a;
+  --jz-border: rgba(255, 255, 255, 0.07);
+
+  /* verdict scale (red -> yellow -> green) */
+  --jz-strong: #83d6c5;
+  --jz-adjust: #f8c762;
+  --jz-weak: #b3003f;
+
+  /* ---- SPACING (8px base grid: 8, 16, 24, 32, 48, 64…) ---- */
+  --space-1: 0.25rem; /* 4px  */
+  --space-2: 0.5rem; /* 8px  */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-7: 2rem; /* 32px */
+  --space-8: 3rem; /* 48px */
+  --space-9: 4rem; /* 64px */
+
+  /* ---- TYPE SCALE (size / paired line-height) ---- */
+  --text-xs: 11px;
+  --leading-xs: 16px;
+  --text-sm: 12px;
+  --leading-sm: 18px;
+  --text-base: 13px;
+  --leading-base: 20px;
+  --text-md: 15px;
+  --leading-md: 22px;
+  --text-lg: 18px;
+  --leading-lg: 26px;
+  /* hero display sizes */
+  --text-display-sm: 32px;
+  --leading-display-sm: 1.1;
+  --text-display-md: 48px;
+  --leading-display-md: 1.06;
+  --text-display-lg: 66px;
+  --leading-display-lg: 1.04;
+
+  /* ---- RADIUS ---- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* ---- SHADOW ---- */
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 22px rgba(0, 0, 0, 0.25);
+  --shadow-outline: 0 0 0 1px var(--jz-border);
+  --shadow-product: 0 4px 20px rgba(244, 244, 245, 0.08);
+
+  /* ---- PAGE SHELL (header + hero shared horizontal rhythm) ---- */
+  --jz-shell-gutter: 5rem; /* 80px — VisBug target vs ~159px centered 72rem */
+  --jz-shell-gutter-sm: var(--space-4); /* 16px mobile */
+  --jz-hero-col-gap: var(--space-6); /* 24px between copy and demo */
+
+  /* ---- SECTION RHYTHM (scroll sections; hero uses shell gutters) ---- */
+  --section-py-sm: 5rem; /* 80px mobile */
+  --section-px-sm: var(--jz-shell-gutter-sm);
+  --section-py-md: 6rem; /* 96px tablet */
+  --section-px-md: var(--jz-shell-gutter-sm);
+  --section-py-lg: 8rem; /* 128px desktop */
+  --section-px-lg: var(--jz-shell-gutter);
+
+  /* ---- HEADER ---- */
+  --jz-header-height: 3rem; /* 48px */
+
+  /* ---- LOGO TRACE (hero J mark) ---- */
+  --hl-trace-duration: 3.1s;
+  --hl-pulse-duration: 5.5s;
+
+  /* ---- MOTION ---- */
+  --dur-fast: 0.14s;
+  --dur-base: 0.18s;
+  --dur-slow: 0.25s;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* ---- PAGE BACKDROP GRADIENT (spans the whole page) ---- */
+  --jz-page-gradient: radial-gradient(
+      120% 80% at 50% -10%,
+      rgba(131, 214, 197, 0.08) 0%,
+      rgba(8, 8, 10, 0) 55%
+    ),
+    radial-gradient(
+      90% 60% at 50% 110%,
+      rgba(168, 162, 255, 0.06) 0%,
+      rgba(8, 8, 10, 0) 60%
+    ),
+    linear-gradient(180deg, #0a0a0d 0%, #08080a 40%, #060608 100%);
+}

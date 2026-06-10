@@ -1,0 +1,12 @@
+/* Header wordmark — slightly larger than nav links for brand presence. */
+
+.jz-wordmark {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-lg);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: inherit;
+  white-space: nowrap;
+}

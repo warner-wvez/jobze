@@ -1,0 +1,25 @@
+# Allowlist: ignore everything, then un-ignore ONLY deployable app files.
+*
+
+# App files
+!.gitignore
+!index.html
+!main.jsx
+!jobze-scorer-demo.jsx
+!vite.config.js
+!tailwind.config.js
+!postcss.config.js
+!package.json
+!package-lock.json
+
+# App directories (directory itself must be un-ignored for git to descend)
+!src/
+!src/**
+!public/
+!public/**
+!.github/
+!.github/**
+
+# Re-ignore junk even inside allowed directories (last match wins)
+**/.DS_Store
+**/*.env*

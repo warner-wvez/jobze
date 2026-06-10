@@ -1,0 +1,25 @@
+{
+  "name": "jobze-scorer-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3000 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --port 3000 --strictPort"
+  },
+  "dependencies": {
+    "@paper-design/shaders": "^0.0.76",
+    "autoprefixer": "^10.5.0",
+    "framer-motion": "^11.18.2",
+    "geist": "^1.7.2",
+    "lucide-react": "^1.17.0",
+    "postcss": "^8.5.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.19"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.2",
+    "vite": "^6.0.0"
+  }
+}

@@ -1,0 +1,163 @@
+@import "./fonts.css";
+@import "./tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    margin: 0;
+    background: var(--jz-bg);
+    color: var(--jz-fg);
+    font-family: "Geist", ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+  /* The gradient backdrop spans the entire page, fixed behind all content. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--jz-page-gradient);
+    pointer-events: none;
+  }
+  ::selection {
+    background: rgba(131, 214, 197, 0.22);
+  }
+}
+
+@layer components {
+  /* Content-section padding rhythm (not applied to full-bleed hero) */
+  .jz-section-pad {
+    padding: var(--section-py-sm) var(--section-px-sm);
+  }
+  @media (min-width: 768px) {
+    .jz-section-pad {
+      padding: var(--section-py-md) var(--section-px-md);
+    }
+  }
+  @media (min-width: 1024px) {
+    .jz-section-pad {
+      padding: var(--section-py-lg) var(--section-px-lg);
+    }
+  }
+
+  .jz-section-divider {
+    border-bottom: 1px solid var(--jz-border);
+  }
+
+  .jz-product-shadow {
+    box-shadow: var(--shadow-product);
+  }
+
+  /* Fixed viewport gutters (80px desktop) — wider than max-w-6xl when needed */
+  .jz-page-shell {
+    box-sizing: border-box;
+    width: calc(100% - 2 * var(--jz-shell-gutter-sm));
+    margin-inline: var(--jz-shell-gutter-sm);
+    padding-inline: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .jz-page-shell {
+      width: calc(100% - 2 * var(--jz-shell-gutter));
+      margin-inline: var(--jz-shell-gutter);
+    }
+  }
+
+  /* Matches hero split so logo / nav align with copy / demo columns */
+  .jz-header-bar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: var(--space-3);
+    min-height: var(--jz-header-height);
+  }
+
+  @media (min-width: 1024px) {
+    .jz-header-bar {
+      grid-template-columns: 0.5fr 1fr;
+    }
+  }
+
+  .jz-header-bar__nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-7);
+  }
+
+  .jz-hero-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    padding-top: var(--jz-header-height);
+  }
+
+  @media (min-width: 1024px) {
+    .jz-hero-split {
+      grid-template-columns: 0.5fr 1fr;
+      column-gap: var(--jz-hero-col-gap);
+    }
+  }
+
+  .jz-hero-panel-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    min-height: calc(100vh - var(--jz-header-height));
+    padding-inline-end: 0;
+  }
+
+  .jz-hero-copy {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .jz-hero-copy__stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .jz-hero-panel-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    min-height: calc(100vh - var(--jz-header-height));
+    min-width: 0;
+    overflow: visible;
+  }
+
+  /* Full column width, vertically centered — symmetrical in right panel */
+  .jz-hero-panel-right__demo {
+    display: flex;
+    min-height: 0;
+    width: 100%;
+    height: min(79.06vh, 747px);
+    min-height: 462px;
+    max-height: calc(
+      (100vh - var(--jz-header-height) - var(--space-4)) * 1.1
+    );
+    flex-direction: column;
+    overflow: visible;
+    box-sizing: border-box;
+  }
+}
